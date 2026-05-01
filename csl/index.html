@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Интерактивный Тест</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="background-shapes">
+        <div class="shape shape-1"></div>
+        <div class="shape shape-2"></div>
+        <div class="shape shape-3"></div>
+    </div>
+
+    <div class="container">
+        <!-- Экран загрузки вопросов -->
+        <section id="setup-screen" class="glass-panel active">
+            <div class="header">
+                <h1>Генератор Тестов</h1>
+                <p>Вставьте ваш текст с тегами <code>&lt;question&gt;</code> и <code>&lt;variant&gt;</code> ниже</p>
+            </div>
+            <div class="input-group">
+                <textarea id="raw-test-input" placeholder="<question>Текст вопроса&#10;<variant>Правильный ответ&#10;<variant>Неправильный ответ..."></textarea>
+            </div>
+            <div class="actions">
+                <button id="start-btn" class="btn primary-btn">Начать тестирование</button>
+            </div>
+            <div id="parse-error" class="error-msg hidden">Не удалось найти вопросы. Проверьте формат.</div>
+        </section>
+
+        <!-- Экран прохождения теста -->
+        <section id="test-screen" class="glass-panel hidden">
+            <div class="test-header">
+                <div class="progress-container">
+                    <span id="question-counter">Вопрос 1 / 10</span>
+                    <div class="progress-bar">
+                        <div id="progress-fill" class="progress-fill"></div>
+                    </div>
+                </div>
+            </div>
+            <div class="question-container">
+                <h2 id="question-text">Текст вопроса будет здесь</h2>
+                <div id="options-container" class="options-container">
+                    <!-- Варианты ответов будут генерироваться здесь -->
+                </div>
+            </div>
+            <div class="test-actions">
+                <button id="next-btn" class="btn primary-btn" disabled>Следующий вопрос</button>
+            </div>
+        </section>
+
+        <!-- Экран результатов -->
+        <section id="results-screen" class="glass-panel hidden">
+            <div class="header">
+                <h1>Результаты</h1>
+                <div class="score-circle">
+                    <span id="final-score">0 / 0</span>
+                </div>
+                <p id="score-message">Отличный результат!</p>
+            </div>
+            
+            <div class="review-section">
+                <h3>Анализ ошибок:</h3>
+                <div id="mistakes-container" class="mistakes-container">
+                    <!-- Ошибки будут выводиться здесь -->
+                </div>
+            </div>
+
+            <div class="actions">
+                <button id="restart-btn" class="btn primary-btn">Пройти заново</button>
+                <button id="new-test-btn" class="btn secondary-btn">Загрузить новый тест</button>
+            </div>
+        </section>
+    </div>
+
+    <script src="app.js"></script>
+</body>
+</html>
